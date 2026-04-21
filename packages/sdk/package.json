@@ -1,0 +1,36 @@
+{
+  "name": "@vibedrop/sdk",
+  "version": "0.1.1",
+  "description": "HTTP client SDK for VibeDrop API.",
+  "license": "MIT",
+  "homepage": "https://vibedrop.cc",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/themez/vibedrop.git",
+    "directory": "packages/sdk"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": ["dist", "README.md"],
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "fflate": "^0.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  }
+}

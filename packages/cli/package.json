@@ -1,0 +1,35 @@
+{
+  "name": "@vibedrop/cli",
+  "version": "0.1.1",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Deploy static sites from your agent in one command.",
+  "license": "MIT",
+  "homepage": "https://vibedrop.cc",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/themez/vibedrop.git",
+    "directory": "packages/cli"
+  },
+  "keywords": ["static-site", "hosting", "cli", "deploy", "cloudflare", "vibedrop"],
+  "type": "module",
+  "bin": {
+    "vibedrop": "./dist/cli.js"
+  },
+  "files": ["dist", "README.md"],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@vibedrop/sdk": "workspace:*",
+    "commander": "^12.1.0",
+    "kleur": "^4.1.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  }
+}
