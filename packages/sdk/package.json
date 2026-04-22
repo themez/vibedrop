@@ -1,6 +1,6 @@
 {
   "name": "@vibedrop/sdk",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "HTTP client SDK for VibeDrop API.",
   "license": "MIT",
   "homepage": "https://vibedrop.cc",

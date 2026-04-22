@@ -15,12 +15,15 @@ const program = new Command();
 program
   .name("vibedrop")
   .description("Deploy static sites from your agent in seconds.")
-  .version("0.0.1");
+  .version("0.2.0");
 
 program
   .command("deploy")
   .argument("<dir>", "directory containing index.html")
-  .option("-s, --slug <slug>", "custom subdomain (Pro)")
+  .option(
+    "-s, --slug <slug>",
+    "slug of an existing site you already deployed — redeploys to the same URL",
+  )
   .option("-t, --title <title>", "site title")
   .option("-p, --password <password>", "password-protect the site (Pro)")
   .action(async (dir: string, opts: { slug?: string; title?: string; password?: string }) => {
@@ -40,7 +43,7 @@ program
     process.stderr.write(kleur.dim(`Uploading ${(zip.length / 1024).toFixed(1)} KB...\n`));
     try {
       const authedClient = new VibedropClient(cfg);
-      const site = await authedClient.deploy(zip, { slug: opts.slug, title: opts.title });
+      const { site, claimUrl } = await authedClient.deploy(zip, { slug: opts.slug, title: opts.title });
       if (opts.password !== undefined) {
         try {
           await authedClient.update(site.slug, { password: opts.password });
@@ -55,6 +58,28 @@ program
       if (site.expiresAt) {
         console.log(kleur.dim(`  Expires ${site.expiresAt}`));
       }
+      if (claimUrl) {
+        console.log();
+        console.log(kleur.yellow().bold("  Claim this site for your account (1h link):"));
+        console.log(`  ${kleur.cyan(claimUrl)}`);
+      }
+    } catch (e) {
+      handleApiError(e);
+    }
+  });
+
+program
+  .command("claim-url")
+  .description("Mint a fresh one-time claim URL for your anonymous key (1 hour TTL).")
+  .action(async () => {
+    const cfg = await loadConfig();
+    if (!cfg.apiKey) fail("no API key configured. Run `vibedrop deploy` first.");
+    try {
+      const client = new VibedropClient(cfg);
+      const { url, expiresIn } = await client.claimToken();
+      console.log(kleur.yellow().bold("Open this link within 1 hour to claim this key into an account:"));
+      console.log(`  ${kleur.cyan(url)}`);
+      console.log(kleur.dim(`  (valid for ${Math.round(expiresIn / 60)} minutes)`));
     } catch (e) {
       handleApiError(e);
     }
