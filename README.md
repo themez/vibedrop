@@ -17,6 +17,17 @@ Deploy a directory from the CLI:
 npx @vibedrop/cli deploy ./dist
 ```
 
+### What counts as a deployable folder?
+
+Anything with an `index.html` at its root. `./dist` above is just one example — all of these work with the same command:
+
+- **Framework build output** — `dist/`, `out/`, `build/` from Vite, `next export`, Astro, SvelteKit, CRA, etc.
+- **Plain HTML** — a hand-written `index.html` plus its CSS/JS assets, a single-file mockup, an AI-generated landing page.
+- **Files your agent just wrote** — "deploy the folder you just made."
+- **Chrome extension or Electron local pages** — any directory of static HTML bundled by your tooling.
+
+VibeDrop serves static files only, so you don't need a dev server. If your framework requires a build step, run it first and point at the output directory.
+
 Add the MCP server to your agent (Claude Code, Cursor, etc.):
 
 ```json
