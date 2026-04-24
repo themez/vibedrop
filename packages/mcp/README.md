@@ -59,8 +59,8 @@ Delete a deployed site by slug.
 1. First call auto-provisions an anonymous API key (stored in `~/.vibedrop/config.json`)
 2. Zips the directory, uploads to VibeDrop API
 3. Returns a live URL anyone can visit
-4. Free tier: 72h TTL, 5MB max, 3 sites, ad banner
-5. Pro: permanent, 50MB, unlimited, no ads
+4. Free tier: 7-day TTL (30 days once claimed), 25 MB max, 3 sites, small footer banner
+5. Pro: permanent sites, 50 MB max, 20 sites, custom domains, no branding
 
 ## Environment Variables
 

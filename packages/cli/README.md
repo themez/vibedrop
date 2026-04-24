@@ -21,12 +21,12 @@ vibedrop whoami              Show current API key + server
 
 ## Free tier
 
-- 72-hour TTL per site
-- 5 MB max per site
+- 7-day TTL per site (30 days once the key is claimed to an account)
+- 25 MB max per site
 - 3 concurrent sites
 - Small footer banner
 
-Upgrade to Pro at [vibedrop.cc/pricing](https://vibedrop.cc/pricing) for permanent sites, 50 MB, unlimited sites, no branding, and custom domains.
+Upgrade to Pro at [vibedrop.cc/#pricing](https://vibedrop.cc/#pricing) for permanent sites, 50 MB per site, 20 sites, custom domains, password protection, and no branding.
 
 ## MCP server
 
